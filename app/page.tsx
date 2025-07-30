@@ -1,4 +1,4 @@
-import Image from "next/image";
+
 import Status from "../componenets/Status"
 export default function Home() {
   return (
