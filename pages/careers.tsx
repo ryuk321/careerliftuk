@@ -1,7 +1,10 @@
-export default function Casreers() {
+const Careers = () => {
   return (
-    <main className="min-h-screen bg-gray-50 p-8 flex flex-col items-center justify-center">
-     <div>Careers</div>
-    </main>
+    <div>
+      <h1>Careers at CareerLiftUK</h1>
+      {/* Add your content here */}
+    </div>
   );
-}   
+};
+
+export default Careers;
