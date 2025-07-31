@@ -21,7 +21,7 @@ export default function JobsPage() {
   ];
 
   return (
-    <main className="min-h-screen px-6 py-16 bg-gradient-to-br from-gray-50 to-white text-gray-900">
+    <section className="min-h-screen px-6 py-16 bg-gradient-to-br from-gray-50 to-white text-gray-900">
       <h1 className="text-4xl font-extrabold text-center text-gray-900 tracking-tight mb-12">
         ✨ Browse Career Opportunities
       </h1>
@@ -51,6 +51,6 @@ export default function JobsPage() {
           </div>
         ))}
       </div>
-    </main>
+    </section>
   );
 }
