@@ -8,8 +8,8 @@ export default function Header() {
   return (
     <header className="fixed top-0 left-0 w-screen z-50 bg-white/10 backdrop-blur-md border-b border-white/20">
       <nav className="max-w-full px-6 py-4 flex items-center justify-between">
-        <span className="text-2xl font-extrabold text-white tracking-wide">
-          CareerLift<span className="text-pink-300">UK</span>
+        <span className="text-2xl font-extrabold text-white tracking-wide"><a href="/">CareerLift<span className="text-pink-300">UK</span> </a>
+          
         </span>
 
         {/* Desktop Nav */}

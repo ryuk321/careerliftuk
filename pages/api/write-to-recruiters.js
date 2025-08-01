@@ -6,7 +6,7 @@ export default async function handler(req, res) {
 
 
 //   This is for Sheet Applications
-  const { fullName, email, phone, location, postcode, jobType, bio } = req.body;
+  const { fullName,companyName, email, phone, location, postcode, jobType, description,salary,forwhom } = req.body;
 
   // Optional: validate fields
   if (!fullName || !email || !phone || !jobType) {
@@ -19,10 +19,10 @@ export default async function handler(req, res) {
 
     await sheets.spreadsheets.values.append({
       spreadsheetId: process.env.GOOGLE_SHEET_ID,
-      range: 'Applications!A:F',
+      range: 'Recruiters!A:F',
       valueInputOption: 'USER_ENTERED',
       requestBody: {
-        values: [[now,fullName, email, phone, location, postcode, jobType, bio]],
+        values: [[now,companyName,fullName, email, phone, location, postcode, jobType, description,salary,forwhom]],
       },
     });
 

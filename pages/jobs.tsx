@@ -1,3 +1,5 @@
+import Navbar from "../componenets/Navbar";
+import "../app/globals.css";
 export default function JobsPage() {
   const jobs = [
     {
@@ -19,9 +21,19 @@ export default function JobsPage() {
       description: 'Serve high-quality drinks and ensure a friendly café atmosphere.',
     },
   ];
+  function boldParttimeJob(data:string){
+    if(data){
+      if (data==="Part-Time"){
+        return ""
+      }
+    }
+
+  }
 
   return (
-    <section className="min-h-screen px-6 py-16 bg-gradient-to-br from-gray-50 to-white text-gray-900">
+    <>
+    <Navbar />
+    <section className="mt-10 min-h-screen px-6 py-16 bg-gradient-to-br from-gray-50 to-white text-gray-900">
       <h1 className="text-4xl font-extrabold text-center text-gray-900 tracking-tight mb-12">
         ✨ Browse Career Opportunities
       </h1>
@@ -36,7 +48,7 @@ export default function JobsPage() {
               <h2 className="text-xl font-bold text-pink-600">{job.title}</h2>
 
               <p className="mt-2 text-sm text-gray-500">
-                {job.location} · {job.type}
+                {job.location} · { job.type}
               </p>
 
               <p className="mt-4 text-gray-700 leading-relaxed">{job.description}</p>
@@ -52,5 +64,6 @@ export default function JobsPage() {
         ))}
       </div>
     </section>
+    </>
   );
 }

@@ -5,13 +5,16 @@ import "../app/globals.css"
 
 export default function ApplyForm() {
   const [formData, setFormData] = useState({
+    companyName : "",
     fullName: "",
     email: "",
     phone: "",
     location: "",
     postcode:"",
     jobType: "",
-    bio: ""
+    description: "",
+    salary: "",
+    forwhom: "",
   });
 
   const handleChange = (
@@ -24,12 +27,11 @@ export default function ApplyForm() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const res = await fetch(`/api/write-to-sheet`, {
+    const res = await fetch(`/api/write-to-recruiters`, {
 
       method: "POST",
       headers: { "Content-Type": "application/json" },
-    
-     
+      body: JSON.stringify(formData)
     });
     const result = await res.json();
     alert(result.message || result.error);
@@ -43,7 +45,7 @@ export default function ApplyForm() {
         <div className="bg-gray-100 p-4 border-t-2 bg-opacity-5 border-indigo-400 rounded-t">
           <div className="max-w-sm mx-auto md:w-full md:mx-0">
             <div className="inline-flex items-center space-x-4">
-              <h1 className="text-gray-600 font-semibold text-lg">Please Fill up the form. We'll get back to you soon.</h1>
+              <h1 className="text-gray-600 font-semibold text-lg">Job Registration</h1>
             </div>
           </div>
         </div>
@@ -65,6 +67,27 @@ export default function ApplyForm() {
                 onChange={handleChange}
                 className="w-full focus:outline-none focus:text-gray-600 p-2"
                 placeholder="email@example.com"
+                required
+              />
+            </div>
+          </div>
+
+  {/* Company Name */}
+          <div>
+            <label className="text-sm text-gray-400">Company Name</label>
+            <div className="w-full inline-flex border rounded-md">
+              <div className="pt-2 px-2 bg-gray-100">
+                <svg className="w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+              </div>
+              <input
+                type="text"
+                name="companyName"
+                value={formData.companyName}
+                onChange={handleChange}
+                className="w-full focus:outline-none focus:text-gray-600 p-2"
+                placeholder="Your full name"
                 required
               />
             </div>
@@ -130,7 +153,7 @@ export default function ApplyForm() {
             <input
               type="text"
               name="postcode"
-              value={formData.location}
+              value={formData.postcode}
               onChange={handleChange}
               className="w-full border rounded-md p-2 focus:outline-none focus:text-gray-600"
               placeholder="SE10 9LS"
@@ -149,29 +172,64 @@ export default function ApplyForm() {
             >
               <option value="">Select a role</option>
               <option value="freelancer">Freelancer</option>
-              <option value="Kitchen_Porter">Kitchen Porter</option>
-              <option value="general_assistant">General Assistant</option>
-              <option value="warehouse_Operative">Warehouse Operative</option>
+              <option value="professional">Professional</option>
+              <option value="sales_assistant">Sales Assistant</option>
+              <option value="data">Data Analyst</option>
               <option value="cleaner">Cleaner</option>
               <option value="house_kepper">HouseKeeper</option>
               <option value="zerohour">Zero-Hour</option>
               <option value="construction">Construction Helper</option>
-              <option value="retail_assistant">Retail -Sales Assitant</option>
+              <option value="Gig">Part of Gig Economy</option>
+              <option value="Porter">Porter</option>
             </select>
           </div>  
+          {/* For Whom */}
+          <div>
+            <label className="text-sm text-gray-400">Suitable For Whom</label>
+            <select
+              name="forWhom"
+              value={formData.forwhom}
+              onChange={handleChange}
+              className="w-full border rounded-md p-2 focus:outline-none focus:text-gray-600"
+           
+            >
+              <option value="">Select a role</option>
+              <option value="freelancer">Students</option>
+              <option value="professional">Professionals</option>    
+              <option value="data">License Holders</option>
+              <option value="sales_assistant">For All</option>
+              
+            </select>
+          </div> 
+
 
           {/* Bio */}
           <div>
-            <label className="text-sm text-gray-400">Brief Introduction / Bio</label>
+            <label className="text-sm text-gray-400">Job Introduction </label>
             <textarea
-              name="bio"
-              value={formData.bio}
+              name="description"
+              value={formData.description}
               onChange={handleChange}
               rows={4}
               className="w-full border rounded-md p-2 focus:outline-none focus:text-gray-600"
-              placeholder="Tell us about yourself"
+              placeholder="Tell us about job in 100 words!"
             />
           </div>
+
+{/* Salary*/}
+          <div>
+            <label className="text-sm text-gray-400">Salary</label>
+            <input
+              type="text"
+              name="salary"
+              value={formData.salary}
+              onChange={handleChange}
+              className="w-full border rounded-md p-2 focus:outline-none focus:text-gray-600"
+              placeholder="SE10 9LS"
+            />
+          </div>
+
+         
 
           {/* Submit Button */}
           <div className="text-right">
