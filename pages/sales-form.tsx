@@ -6,6 +6,7 @@ import "../app/globals.css";
 
 
 export default function SalesForm() {
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     businessName: '',
     businessType: '',
@@ -23,8 +24,10 @@ export default function SalesForm() {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-
-    const res = await fetch(`/api/write-to-alleat`, {
+    if (loading) return;// Prevent multiple submissions
+    setLoading(true);
+    try{
+      const res = await fetch(`/api/write-to-alleat`, {
 
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -32,6 +35,15 @@ export default function SalesForm() {
     });
     const result = await res.json();
     alert(result.message || result.error);
+      
+    }
+    catch (error) {
+      console.error('Error submitting form:', error);
+      alert('There was an error submitting the form. Please try again later.');
+    } finally {
+      setLoading(false);
+    }
+    
   };
 
   return (
