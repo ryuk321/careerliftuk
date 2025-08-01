@@ -44,14 +44,14 @@ export default function SalesForm() {
 
         {/* Business Name */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Business Name</label>
+          <label className="block text-sm font-medium text-gray-800 mb-1">Business Name</label>
           <input
             name="businessName"
             type="text"
             value={formData.businessName}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent focus:font-bold"
+            className="w-full px-4 py-2 border text-black rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent focus:font-bold"
           />
         </div>
 
@@ -63,7 +63,7 @@ export default function SalesForm() {
             value={formData.businessType}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 border rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent focus:font-bold"
+            className="w-full px-4 py-2 border text-black rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent focus:font-bold"
           >
             <option value="">Select type</option>
             <option value="Restaurant">Restaurant</option>
@@ -85,7 +85,7 @@ export default function SalesForm() {
             value={formData.contactName}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent focus:font-bold"
+            className="w-full px-4 py-2 border rounded-md text-black focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent focus:font-bold"
           />
         </div>
 
@@ -98,7 +98,7 @@ export default function SalesForm() {
             value={formData.phone}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent focus:font-bold"
+            className="w-full px-4 py-2 border text-black rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent focus:font-bold"
           />
         </div>
 
@@ -110,7 +110,7 @@ export default function SalesForm() {
             type="email"
             value={formData.email}
             onChange={handleChange}
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent focus:font-bold"
+            className="w-full px-4 py-2 border text-black rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent focus:font-bold"
           />
         </div>
 
@@ -123,7 +123,7 @@ export default function SalesForm() {
             onChange={handleChange}
             rows={2}
             required
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent focus:font-bold"
+            className="w-full px-4 py-2 border  text-black rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent focus:font-bold"
           />
         </div>
 
@@ -135,7 +135,7 @@ export default function SalesForm() {
             value={formData.status}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 border rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent focus:font-bold"
+            className="w-full px-4 py-2 border text-black rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent focus:font-bold"
           >
             <option value="">Select status</option>
             <option value="Interested">Interested</option>
@@ -153,7 +153,7 @@ export default function SalesForm() {
             value={formData.remarks}
             onChange={handleChange}
             rows={3}
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent focus:font-bold"
+            className="w-full px-4 py-2 border text-black rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent focus:font-bold"
           />
         </div>
 
