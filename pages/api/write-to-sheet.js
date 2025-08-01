@@ -9,7 +9,7 @@ export default async function handler(req, res) {
   const { fullName, email, phone, location, postcode, jobType, bio } = req.body;
 
   // Optional: validate fields
-  if (!fullName || !email || !phone || !jobType) {
+  if (!fullName || !email || !phone) {
     return res.status(400).json({ error: 'Missing required fields' });
   }
 

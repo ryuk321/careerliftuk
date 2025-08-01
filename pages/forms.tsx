@@ -23,11 +23,12 @@ export default function ApplyForm() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    alert([formData.fullName, formData.email, formData.phone, formData.location, formData.postcode, formData.jobType, formData.bio]);
     const res = await fetch(`/api/write-to-sheet`, {
 
       method: "POST",
       headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData)
     
      
     });
@@ -130,7 +131,7 @@ export default function ApplyForm() {
             <input
               type="text"
               name="postcode"
-              value={formData.location}
+              value={formData.postcode}
               onChange={handleChange}
               className="w-full border rounded-md p-2 focus:outline-none focus:text-gray-600"
               placeholder="SE10 9LS"
