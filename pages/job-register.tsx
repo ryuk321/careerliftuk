@@ -10,6 +10,7 @@ export default function ApplyForm() {
     email: "",
     phone: "",
     location: "",
+ 
     postcode:"",
     jobType: "",
     description: "",
@@ -147,6 +148,7 @@ export default function ApplyForm() {
               placeholder="City, Country"
             />
           </div>
+       
            {/* Post Code  Pickup*/}
           <div>
             <label className="text-sm text-gray-400">Post Code</label>
@@ -187,7 +189,7 @@ export default function ApplyForm() {
           <div>
             <label className="text-sm text-gray-400">Suitable For Whom</label>
             <select
-              name="forWhom"
+              name="forwhom"
               value={formData.forwhom}
               onChange={handleChange}
               className="w-full border rounded-md p-2 focus:outline-none focus:text-gray-600"

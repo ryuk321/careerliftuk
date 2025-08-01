@@ -9,6 +9,7 @@ export default function ApplyForm() {
     email: "",
     phone: "",
     location: "",
+    jobLocation: "",
     postcode:"",
     jobType: "",
     bio: ""
@@ -123,6 +124,18 @@ export default function ApplyForm() {
               onChange={handleChange}
               className="w-full border rounded-md p-2 focus:outline-none focus:text-gray-600"
               placeholder="City, Country"
+            />
+          </div>
+             {/* JOb Location */}
+          <div>
+            <label className="text-sm text-gray-400">Job Location- Where you want the job?</label>
+            <input
+              type="text"
+              name="jobLocation"
+              value={formData.jobLocation}
+              onChange={handleChange}
+              className="w-full border rounded-md p-2 focus:outline-none focus:text-gray-600"
+              placeholder="New my Place, Hendon, Uxbridge, Inside London"
             />
           </div>
            {/* Post Code  Pickup*/}

@@ -6,7 +6,7 @@ export default async function handler(req, res) {
 
 
 //   This is for Sheet Applications
-  const { fullName, email, phone, location, postcode, jobType, bio } = req.body;
+  const { fullName, email, phone, location,jobLocation, postcode, jobType, bio } = req.body;
 
   // Optional: validate fields
   if (!fullName || !email || !phone) {
@@ -22,7 +22,7 @@ export default async function handler(req, res) {
       range: 'Applications!A:F',
       valueInputOption: 'USER_ENTERED',
       requestBody: {
-        values: [[now,fullName, email, phone, location, postcode, jobType, bio]],
+        values: [[now,fullName, email, phone, location,jobLocation, postcode, jobType, bio]],
       },
     });
 
