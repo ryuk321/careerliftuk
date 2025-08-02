@@ -3,7 +3,9 @@ import Navbr from "../componenets/Navbar";
 import { useState } from "react";
 import "../app/globals.css"
 
+
 export default function ApplyForm() {
+   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     companyName : "",
     fullName: "",
@@ -27,8 +29,10 @@ export default function ApplyForm() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    const res = await fetch(`/api/write-to-recruiters`, {
+    if (loading) return;// Prevent multiple submissions
+    setLoading(true);
+    try{
+      const res = await fetch(`/api/write-to-recruiters`, {
 
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -36,6 +40,15 @@ export default function ApplyForm() {
     });
     const result = await res.json();
     alert(result.message || result.error);
+      
+    }
+    catch (error) {
+      console.error('Error submitting form:', error);
+      alert('There was an error submitting the form. Please try again later.');
+    } finally {
+      setLoading(false);
+    }
+
   };
 
   return (

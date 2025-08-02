@@ -4,6 +4,7 @@ import { useState } from "react";
 import "../app/globals.css"
 
 export default function ApplyForm() {
+   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -23,6 +24,29 @@ export default function ApplyForm() {
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (loading) return;// Prevent multiple submissions
+    setLoading(true);
+    try{
+      const res = await fetch(`/api/write-to-applications`, {
+
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData)
+    });
+    const result = await res.json();
+    alert(result.message || result.error);
+      
+    }
+    catch (error) {
+      console.error('Error submitting form:', error);
+      alert('There was an error submitting the form. Please try again later.');
+    } finally {
+      setLoading(false);
+    }
+
+
+
     e.preventDefault();
     alert([formData.fullName, formData.email, formData.phone, formData.location, formData.postcode, formData.jobType, formData.bio]);
     const res = await fetch(`/api/write-to-sheet`, {
@@ -45,7 +69,7 @@ export default function ApplyForm() {
         <div className="bg-gray-100 p-4 border-t-2 bg-opacity-5 border-indigo-400 rounded-t">
           <div className="max-w-sm mx-auto md:w-full md:mx-0">
             <div className="inline-flex items-center space-x-4">
-              <h1 className="text-gray-600 font-semibold text-lg">Please Fill up the form. We'll get back to you soon.</h1>
+              <h1 className="text-gray-600 font-semibold text-lg">Job Seeker Form - Please Fill up the form. We'll get back to you soon.</h1>
             </div>
           </div>
         </div>
@@ -65,7 +89,7 @@ export default function ApplyForm() {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full focus:outline-none focus:text-gray-600 p-2"
+                className="w-full focus:outline-none focus:text-gray-600 p-2 text-black"
                 placeholder="email@example.com"
                 required
               />
@@ -86,7 +110,7 @@ export default function ApplyForm() {
                 name="fullName"
                 value={formData.fullName}
                 onChange={handleChange}
-                className="w-full focus:outline-none focus:text-gray-600 p-2"
+                className="w-full focus:outline-none focus:text-gray-600 p-2 text-black"
                 placeholder="Your full name"
                 required
               />
@@ -107,7 +131,7 @@ export default function ApplyForm() {
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
-                className="w-full focus:outline-none focus:text-gray-600 p-2"
+                className="w-full focus:outline-none focus:text-gray-600 p-2 text-black"
                 placeholder="1234567890"
                 required
               />
@@ -122,7 +146,7 @@ export default function ApplyForm() {
               name="location"
               value={formData.location}
               onChange={handleChange}
-              className="w-full border rounded-md p-2 focus:outline-none focus:text-gray-600"
+              className="w-full border rounded-md p-2 focus:outline-none focus:text-gray-600 text-black"
               placeholder="City, Country"
             />
           </div>
@@ -134,7 +158,7 @@ export default function ApplyForm() {
               name="jobLocation"
               value={formData.jobLocation}
               onChange={handleChange}
-              className="w-full border rounded-md p-2 focus:outline-none focus:text-gray-600"
+              className="w-full border rounded-md p-2 focus:outline-none focus:text-gray-600 text-black"
               placeholder="New my Place, Hendon, Uxbridge, Inside London"
             />
           </div>
@@ -146,7 +170,7 @@ export default function ApplyForm() {
               name="postcode"
               value={formData.postcode}
               onChange={handleChange}
-              className="w-full border rounded-md p-2 focus:outline-none focus:text-gray-600"
+              className="w-full border rounded-md p-2 focus:outline-none focus:text-gray-600 text-black"
               placeholder="SE10 9LS"
             />
           </div>
@@ -158,7 +182,7 @@ export default function ApplyForm() {
               name="jobType"
               value={formData.jobType}
               onChange={handleChange}
-              className="w-full border rounded-md p-2 focus:outline-none focus:text-gray-600"
+              className="w-full border rounded-md p-2 focus:outline-none focus:text-gray-600 text-black"
               required
             >
               <option value="">Select a role</option>
@@ -182,7 +206,7 @@ export default function ApplyForm() {
               value={formData.bio}
               onChange={handleChange}
               rows={4}
-              className="w-full border rounded-md p-2 focus:outline-none focus:text-gray-600"
+              className="w-full border rounded-md p-2 focus:outline-none focus:text-gray-600 text-black" 
               placeholder="Tell us about yourself"
             />
           </div>

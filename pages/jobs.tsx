@@ -48,7 +48,8 @@ export default function JobsPage() {
               <h2 className="text-xl font-bold text-pink-600">{job.title}</h2>
 
               <p className="mt-2 text-sm text-gray-500">
-                {job.location} · { job.type}
+                {job.location} · { " "}
+                {job.type === "Part-Time" ? <span className="font-bold text-red-500">{job.type}</span> : job.type}
               </p>
 
               <p className="mt-4 text-gray-700 leading-relaxed">{job.description}</p>

@@ -1,15 +1,43 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { signOut } from "firebase/auth";
+import { auth } from "../lib/firebase";
+import { useRouter } from "next/navigation";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+  const router = useRouter();
+
+  useEffect(() => {
+    const token = localStorage.getItem('user'); // Simulated auth check
+    setIsLoggedIn(!!token); // Convert to boolean
+  }, []);
+
+
+
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      localStorage.removeItem('user');
+      router.push('/login'); // Redirect to login page after logout
+
+    } catch (error: any) {
+      console.error('Error logging out:', error);
+    }
+  }
+  const handleLogin = () => {
+    router.push('/login'); // Redirect to login page
+  }
 
   return (
     <header className="fixed top-0 left-0 w-screen z-50 bg-white/10 backdrop-blur-md border-b border-white/20">
       <nav className="max-w-full px-6 py-4 flex items-center justify-between">
         <span className="text-2xl font-extrabold text-white tracking-wide"><a href="/">CareerLift<span className="text-pink-300">UK</span> </a>
-          
+
         </span>
 
         {/* Desktop Nav */}
@@ -17,6 +45,25 @@ export default function Header() {
           <li><a href="/" className="hover:text-pink-300 transition">Home</a></li>
           <li><a href="/jobs" className="hover:text-pink-300 transition">Jobs</a></li>
           <li><a href="/contact" className="hover:text-pink-300 transition">Contact</a></li>
+          {isLoggedIn ? (
+            <li>
+              <button
+                onClick={handleLogout}
+                className="hover:text-pink-300 transition"
+              >
+                Logout
+              </button>
+            </li>) : (
+            <li>
+              <button
+                onClick={handleLogin}
+                className="hover:text-pink-300 transition"
+              >
+                Login
+              </button>
+            </li>
+          )}
+
         </ul>
 
         {/* Hamburger Menu Button */}
@@ -37,6 +84,24 @@ export default function Header() {
           <li><a href="/" className="block hover:text-pink-300 transition">Home</a></li>
           <li><a href="/jobs" className="block hover:text-pink-300 transition">Jobs</a></li>
           <li><a href="/contact" className="block hover:text-pink-300 transition">Contact</a></li>
+          {isLoggedIn ? (
+            <li>
+              <button
+                onClick={handleLogout}
+                className="hover:text-pink-300 transition"
+              >
+                Logout
+              </button>
+            </li>) : (
+            <li>
+              <button
+                onClick={handleLogin}
+                className="hover:text-pink-300 transition"
+              >
+                Login
+              </button>
+            </li>
+          )}
         </ul>
       )}
     </header>
